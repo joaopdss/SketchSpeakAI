@@ -1,32 +1,15 @@
 import openai
-import os
+from record_audio import Audio
+import time
 
-openai.api_key = "xxxxxxxxxxxxx"
+### Just a bunch of text below that I dont wanna change today
 
-client = openai.OpenAI()
+# prompt = "Hey, give me some ideas for my new computer vision project!"
 
-def get_response(audio, prompt=None, model="gpt-3.5-turbo-0125"):
 
-	if audio:
-		transcription = client.audio.transcriptions.create(
-			model="whisper-1",
-			file=audio_file
-		)
+# response = get_response(prompt)
 
-		return transcription.text
+# print(response)
 
-	else:
-		message = prompt
-
-		resume = openai.chat.completions.create(
-			model="gpt-3.5-turbo",
-			messages=message
-		)
-
-		return resume.choices
-
-prompt = "Hey, give me some ideas for my new computer vision project!"
-
-response = get_response(prompt)
-
-print(response)
+# response = get_response(True, "teste.wav")
+# print(response)
