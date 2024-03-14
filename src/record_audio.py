@@ -28,7 +28,7 @@ class Audio:
 		self.stream.close()
 		self.audio.terminate()
 
-		with wave.open("teste.wav", 'wb') as wf:
+		with wave.open("../audios/teste.wav", 'wb') as wf:
 			wf.setnchannels(self.channels)
 			wf.setsampwidth(self.audio.get_sample_size(format))
 			wf.setframerate(self.rate)
