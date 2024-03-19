@@ -12,6 +12,8 @@ class Audio:
 		self.audio_instance = pyaudio.PyAudio()
 		self.frames = []
 		self.pause = False
+		self.stream = self.audio_instance.open(format=self.format, channels=self.channels, rate=self.rate,
+		                                       input=True)
 
 	# Record audio without a limit duration
 	def record(self):
@@ -23,14 +25,14 @@ class Audio:
 				self.stop()
 
 	# Stop recording
-	def stop(self):
+	def stop(self, path_audio_file):
 		self.stream.stop_stream()
 		self.stream.close()
-		self.audio.terminate()
+		self.audio_instance.terminate()
 
 		with wave.open("../audios/teste.wav", 'wb') as wf:
 			wf.setnchannels(self.channels)
-			wf.setsampwidth(self.audio.get_sample_size(format))
+			wf.setsampwidth(self.audio_instance.get_sample_size(self.format))
 			wf.setframerate(self.rate)
 			wf.writeframes(b''.join(self.frames))
 

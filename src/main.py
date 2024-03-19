@@ -1,15 +1,26 @@
-import openai
 from record_audio import Audio
-import time
-import os
+from cam_painter import Drawing
+from gpt import OpenAI
 
-### Just a bunch of text below that I dont wanna change today
+path_audio_file = "../audios/teste.wav"
+recording_stats = False
+audio_instance = Audio()
+drawing_instance = Drawing()
+openai_instance = OpenAI()
 
-# prompt = "Hey, give me some ideas for my new computer vision project!"
+drawing_instance.start()
 
 
-# response = get_response(prompt)
+while True:
 
-# print(response)
+	if drawing_instance.recording and not recording_stats:
+		print("entrei")
+		recording_stats = True
+		audio_instance.record()
+	elif not drawing_instance and recording_stats:
+		print("Koeeeeeeeeeeeeeeeeeeeeeeee")
+		recording_stats = False
+		audio_instance.stop(path_audio_file)
 
-# response = get_response(True, "teste.wav")
+		transcript = openai_instance.get_response(True, path_audio_file)
+		resume = openai_instance.get_response(False, prompt=transcript)
