@@ -124,3 +124,12 @@ class Drawing():
 
         cap.release()
         cv2.destroyAllWindows()
+
+
+    def save_img_canvas(self, file_name):
+        img_canvas_copy = self.img_canvas.copy()
+        black_threshold = [0, 0, 0]
+        black_pixels_mask = np.all(img_canvas_copy == black_threshold, axis=-1)
+        img_canvas_copy[black_pixels_mask] = [255, 255, 255]
+
+        cv2.imwrite(file_name, img_canvas_copy)

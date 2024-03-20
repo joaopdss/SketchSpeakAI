@@ -1,3 +1,5 @@
+import cv2
+
 from record_audio import Audio
 from cam_painter import Drawing
 from gpt import OpenAI
@@ -24,11 +26,16 @@ while True:
 		recording_stats = False
 		audio_instance.pause = True
 		recording_thread.join()
+		drawing_instance.save_img_canvas("../images/drawing.jpg")
 
 		transcript = openai_instance.get_response(True, path_audio_file)
 		summary = openai_instance.get_response(False, prompt=transcript)
-		print(summary)
+
+		lines = summary.strip().split('\n')
+		title = lines[0].replace('Title: ', '')
+		summary = '\n'.join(lines[1:])
 		summary = re.findall(r"\d+\.\s*(.*)", summary)
 		summary = [topic for topic in summary if topic]
 
-		pptx_instance.create_pptx_slide("Test", summary, "../images/lebron.jpg", "../presentations/teste.pptx")
+		pptx_instance.create_pptx_slide(title, summary, "../images/drawing.jpg", "../presentations/teste.pptx")
+		print("Slide created")
