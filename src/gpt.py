@@ -3,8 +3,8 @@ import openai
 class OpenAI:
 
 	def __init__(self):
-		openai.api_key = "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"
-		self.client = openai.OpenAI(api_key="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")
+		openai.api_key = "xxx"
+		self.client = openai.OpenAI(api_key="xx")
 
 	# get response from gpt, can send an audio if audio=True to return the transcription or another thing by sending a text
 	def get_response(self, is_audio, audio_file=None, prompt=None):
