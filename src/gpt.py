@@ -3,7 +3,8 @@ import openai
 class OpenAI:
 
 	def __init__(self):
-		self.client = openai.OpenAI(api_key="xxxxxxxxx")
+		openai.api_key = "xxx"
+		self.client = openai.OpenAI(api_key="xxx")
 
 	# get response from gpt, can send an audio if audio=True to return the transcription or another thing by sending a text
 	def get_response(self, is_audio, audio_file=None, prompt=None):
@@ -18,13 +19,14 @@ class OpenAI:
 			)
 
 		else:
+			prompt = f"I want you to summarize in three small topics what was said in this content, no yapping: {prompt}"
 
 			response = openai.chat.completions.create(
 				model="gpt-3.5-turbo",
-				messages=prompt
+				messages= [{"role": "system", "content": "Always translate your response to English language"}, {"role": "user", "content": prompt}]
 			)
-
-			response = response.choices
+			print(response)
+			response = response.choices[0].message.content
 
 		return response
 

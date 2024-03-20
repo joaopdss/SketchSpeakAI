@@ -56,13 +56,14 @@ class Drawing():
                                 select_colors = True
                                 action = 3
                             elif 525 < x1 < 695 and y1 > 20 and (end_time - start_time) > 5 and not select_recording:
-                                draw_finished = True
                                 select_recording = True
                                 action = 0
 
                                 if not self.recording:
+                                    print("recording")
                                     self.recording = True
                                 else:
+                                    print("not recording")
                                     self.recording = False
 
                         elif 125 < y1 < 250 and select_colors and action == 3:
@@ -120,5 +121,6 @@ class Drawing():
                 cv2.waitKey(1)
 
             end_time = time.time()
-# cap.release()
-# cv2.destroyAllWindows()
+
+        cap.release()
+        cv2.destroyAllWindows()

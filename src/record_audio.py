@@ -1,6 +1,7 @@
 import pyaudio
 import wave
 
+
 class Audio:
 	# Controls the audio recording
 
@@ -16,13 +17,16 @@ class Audio:
 		                                       input=True)
 
 	# Record audio without a limit duration
-	def record(self):
-		while True:
-			data = self.stream.read(self.chunk)
-			self.frames.append(data)
+	def record(self, path_audio):
+		while not self.pause:
+			try:
+				data = self.stream.read(self.chunk)
+				self.frames.append(data)
 
-			if self.pause:
-				self.stop()
+				if self.pause:
+					self.stop(path_audio)
+			except:
+				pass
 
 	# Stop recording
 	def stop(self, path_audio_file):
@@ -30,9 +34,11 @@ class Audio:
 		self.stream.close()
 		self.audio_instance.terminate()
 
-		with wave.open("../audios/teste.wav", 'wb') as wf:
+		with wave.open(path_audio_file, 'wb') as wf:
 			wf.setnchannels(self.channels)
 			wf.setsampwidth(self.audio_instance.get_sample_size(self.format))
 			wf.setframerate(self.rate)
 			wf.writeframes(b''.join(self.frames))
 
+		self.pause = True
+		return True

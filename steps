@@ -2,6 +2,6 @@
 - integrate with chat gpt to generate resume of the audio☑
 - gerar images (um slide) baseado nesse resumo ☑
 - atualizar template do drawing pra esse novo projeto☑
-- integrar o que é desenhado no drawing na imagem/slide e áudio automático a partir de clique no botão ☑??
-- nao ta entrando nas minhas validações do main quando start/stop recording e preciso integrar o desenho pro pptx
+- integrar o que é desenhado no drawing na imagem/slide e áudio automático a partir de clique no botão ☑
+- nao ta entrando nas minhas validações do main quando start/stop recording e preciso integrar o desenho pro pptx☑
 - gravar vídeo mostrando a solucao
