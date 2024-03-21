@@ -12,6 +12,7 @@ class Drawing():
         self.cap = cv2.VideoCapture(0)
         self.cap.set(3, 1288)
         self.cap.set(4, 728)
+        self.status = ""
 
 
     def start(self):
@@ -117,6 +118,8 @@ class Drawing():
                 else:
                     cv2.putText(frame, "Stop recording", (535, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
 
+                cv2.putText(frame, self.status, (235, 65), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+
                 cv2.imshow("Frame", frame)
                 cv2.waitKey(1)
 
@@ -133,3 +136,4 @@ class Drawing():
         img_canvas_copy[black_pixels_mask] = [255, 255, 255]
 
         cv2.imwrite(file_name, img_canvas_copy)
+

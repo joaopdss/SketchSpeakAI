@@ -55,15 +55,3 @@ class PowerPoint():
 		self.prs.save(output_path)
 
 		return True
-
-
-# Examples below
-# title = "Lebron the GOAT of NBA"
-# image_path = "../images/lebron.jpg"
-# content_text = [
-# 		"Lebron is considered for many the greatest basketball player of all time",
-# 		"There people who compare him to Michael Jordan, but everyone knows who is the goat"
-# 	]
-# output_path = "teste.pptx"
-
-# create_pptx_slide(title, content_text, image_path, output_path)
